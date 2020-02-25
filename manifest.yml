@@ -1,0 +1,5 @@
+applications:
+- name: tracking_app
+  memory: 1G
+  random-route: true
+  path: target/speclogger-0.0.1-SNAPSHOT.jar

@@ -1,5 +1,7 @@
 package com.jgainey.speclogger;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class MyController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/start", produces = "application/json")
-    public void blaston(@RequestParam(value = "sleeptime", defaultValue = "50") int sleeptime,
-                        @RequestParam(value = "count", defaultValue = "100") int count,
-                        @RequestParam(value = "word", defaultValue = "YODACOUNTER") String word){
+    public ResponseEntity<String> blaston(@RequestParam(value = "sleeptime", defaultValue = "50") int sleeptime,
+                                  @RequestParam(value = "count", defaultValue = "100") int count,
+                                  @RequestParam(value = "word", defaultValue = "YODACOUNTER") String word){
 
 
         for(int i = 0 ; i< count ; i++){
@@ -25,6 +27,6 @@ public class MyController {
             }
             Utils.logInfo(word+","+ i + ",");
         }
-
+        return new ResponseEntity<String>("Success", HttpStatus.OK);
     }
 }
